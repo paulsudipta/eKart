@@ -1,0 +1,45 @@
+.cart_body {
+  margin: 50px;
+}
+
+.cart_list {
+  /* background-color: lightgrey; */
+  border: 1px solid lightgrey;
+  width: 100%;
+}
+
+.empty_page {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.action_button {
+  width: 22%;
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 2;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list_box {
+  border: 1px solid lightgrey;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.count_div {
+  display: flex;
+}

@@ -1,0 +1,26 @@
+.details_body {
+  margin: 50px 100px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.details_img {
+  height: 200px;
+  width: 300px;
+}
+
+.product_details {
+  width: 600px;
+}
+
+.text_title {
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.test_description {
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 400;
+}
