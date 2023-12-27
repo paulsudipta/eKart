@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../contexts/CartContext";
 import "./CartPage.css";
 import { Button } from "@mui/material";
@@ -9,8 +9,15 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useCart();
+  const [selectedValue, setSelectedValue] = useState(1);
 
   let cartList = cart.length;
+
+  const handleChange = (e) => {
+    setSelectedValue(parseInt(e.target.value, 10));
+  };
+
+  console.log(cart);
 
   return (
     <React.Fragment>
@@ -22,13 +29,17 @@ const CartPage = () => {
               <div key={item.id} className="list_box">
                 <div className="title"> {item.name}</div>
                 <div className="count_div">
-                  <IconButton aria-label="delete">
-                    <AddCircleIcon />
-                  </IconButton>
-                  <div>5</div>
-                  <IconButton aria-label="delete">
-                    <RemoveCircleIcon />
-                  </IconButton>
+                  <select
+                    id="rangeSelector"
+                    value={selectedValue}
+                    onChange={handleChange}
+                  >
+                    {[...Array(10).keys()].map((value) => (
+                      <option key={value + 1} value={value + 1}>
+                        {value + 1}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <Button
                   startIcon={<DeleteIcon />}

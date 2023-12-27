@@ -8,14 +8,13 @@ import "./ProductDetailsPage.css";
 
 const ProductDetailsPage = () => {
   const { categoryDetails } = useContext(context);
-  const { id } = useParams();
   const { addToCart } = useCart();
 
-  const { title, description, image } = categoryDetails;
+  const { id, title, description, image } = categoryDetails;
 
   const handleAddCart = () => {
     const item = {
-      id,
+      id: id,
       name: title,
       description: description,
     };
