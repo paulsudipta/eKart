@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,6 +13,7 @@ import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../logo.svg";
 import { useCart } from "../contexts/CartContext";
+import { context } from "../contexts/ProductContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,9 +47,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const { categoryItem } = useContext(context);
+  const [searchQuery, setSearchQuery] = useState("");
   const isMenuOpen = Boolean(anchorEl);
-
   const navigate = useNavigate();
   const { cart } = useCart();
 
@@ -83,7 +84,12 @@ export default function Header() {
     </Menu>
   );
 
-  console.log(cart.length);
+  const filterData = () => {
+    return categoryItem.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
@@ -96,8 +102,19 @@ export default function Header() {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
+              {searchQuery.length > 0 && (
+                <div>
+                  {" "}
+                  {filterData().map((item) => (
+                    <div key={item.id}>{item.title}</div>
+                  ))}
+                </div>
+              )}
             </Search>
+
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
